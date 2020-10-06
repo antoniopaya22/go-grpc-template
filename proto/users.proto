@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package grpc;
+
+// USERS CRUD
+service UsersCRUD {
+  rpc CreateUser (UserInput) returns (UserResponse) {}
+  rpc ReadUser (ID) returns (User) {}
+  rpc UpdateUser (UserInput) returns (UserResponse) {}
+  rpc DeleteUser (ID) returns (UserResponse) {}
+  rpc ListUsers (ListUserReq) returns (ListUserRes) {}
+}
+
+message User {
+  uint64 id = 1;
+  string username = 2;
+  string hash = 3;
+}
+
+message UserInput {
+  uint64 id = 1;
+  string username = 2;
+  string password = 3;
+}
+
+message UserResponse {
+  uint64 id = 1;
+}
+
+message ListUserReq {}
+
+message ListUserRes {
+  repeated User users = 1;
+}
+
+message ID {
+  uint64 id = 1;
+}
